@@ -1,0 +1,7 @@
+{
+  "name": "Tienda de Ropa Minimalista",
+  "description": "Tienda de ropa moderna y minimalista con fondo plano amarillo, galería visual animada con imagen grande, productos destacados y carrito interactivo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

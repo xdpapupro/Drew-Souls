@@ -44,13 +44,13 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       />
 
       {/* Modal Container */}
-      <div className="relative bg-[#FFFFFF] border border-[#E5E2DC] rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl z-10 my-8">
+      <div className="relative bg-[#FFFFFF] border border-[#1A1A1A]/20 rounded-none max-w-3xl w-full overflow-hidden shadow-2xl z-10 my-8">
         {/* Close button */}
         <button
           type="button"
           onClick={onClose}
           aria-label="Cerrar ventana de producto"
-          className="absolute top-4 right-4 z-20 p-2 text-[#777777] hover:text-[#1A1A1A] bg-[#F7F6F3]/80 hover:bg-[#EFECE5] rounded-full transition-colors cursor-pointer"
+          className="absolute top-4 right-4 z-20 p-2 text-[#777777] hover:text-[#1A1A1A] bg-[#F7F6F3]/90 hover:bg-[#EFECE5] rounded-none transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
@@ -62,9 +62,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               src={product.image}
               alt={product.name}
               className="w-full h-full object-cover object-center"
+              referrerPolicy="no-referrer"
             />
             {product.tag && (
-              <span className="absolute top-4 left-4 px-2.5 py-1 text-[11px] uppercase tracking-wider font-semibold bg-[#1A1A1A] text-[#F8F7F4] rounded-md">
+              <span className="absolute top-4 left-4 px-2.5 py-1 text-[11px] uppercase tracking-wider font-semibold bg-[#1A1A1A] text-[#F8F7F4] rounded-none">
                 {product.tag}
               </span>
             )}
@@ -147,7 +148,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                         key={size}
                         type="button"
                         onClick={() => setSelectedSize(size)}
-                        className={`py-2 text-xs font-medium rounded-lg border transition-all cursor-pointer ${
+                        className={`py-2 text-xs font-medium rounded-none border transition-all cursor-pointer ${
                           isSelected
                             ? 'border-[#1A1A1A] bg-[#1A1A1A] text-[#F8F7F4]'
                             : 'border-[#E2DFD8] text-[#333333] hover:border-[#1A1A1A]'
@@ -169,7 +170,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                   <ul className="space-y-1.5 text-xs text-[#666666]">
                     {product.details.map((detail, idx) => (
                       <li key={idx} className="flex items-center gap-2">
-                        <span className="w-1 h-1 rounded-full bg-[#1A1A1A]" />
+                        <span className="w-1 h-1 bg-[#1A1A1A]" />
                         <span>{detail}</span>
                       </li>
                     ))}
@@ -182,11 +183,11 @@ export const ProductModal: React.FC<ProductModalProps> = ({
             <div>
               <div className="flex items-center gap-3">
                 {/* Quantity */}
-                <div className="flex items-center border border-[#E0DDD5] rounded-lg bg-[#F8F7F4] px-2 py-1">
+                <div className="flex items-center border border-[#E0DDD5] rounded-none bg-[#F8F7F4] px-2 py-1">
                   <button
                     type="button"
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-2 py-1 text-xs font-semibold text-[#1A1A1A] hover:bg-[#ECE8DF] rounded cursor-pointer"
+                    className="px-2 py-1 text-xs font-semibold text-[#1A1A1A] hover:bg-[#ECE8DF] rounded-none cursor-pointer"
                   >
                     -
                   </button>
@@ -196,7 +197,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setQuantity(quantity + 1)}
-                    className="px-2 py-1 text-xs font-semibold text-[#1A1A1A] hover:bg-[#ECE8DF] rounded cursor-pointer"
+                    className="px-2 py-1 text-xs font-semibold text-[#1A1A1A] hover:bg-[#ECE8DF] rounded-none cursor-pointer"
                   >
                     +
                   </button>
@@ -207,7 +208,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                   type="button"
                   onClick={handleAdd}
                   disabled={added}
-                  className={`flex-1 py-3 px-4 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                  className={`flex-1 py-3 px-4 rounded-none text-xs sm:text-sm font-medium uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer ${
                     added
                       ? 'bg-[#265324] text-[#F8F7F4]'
                       : 'bg-[#1A1A1A] text-[#F8F7F4] hover:bg-[#333333]'

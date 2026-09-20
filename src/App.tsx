@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { Navbar } from './components/Navbar';
 import { Gallery } from './components/Gallery';
 import { FeaturedProducts } from './components/FeaturedProducts';
-import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
 import { ProductModal } from './components/ProductModal';
 import { Toast } from './components/Toast';
+import { IntroAnimation } from './components/IntroAnimation';
 import { FEATURED_PRODUCTS } from './data/products';
 import { Product, CartItem } from './types';
 
 export default function App() {
+  const [introFinished, setIntroFinished] = useState(false);
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
       const saved = localStorage.getItem('atelier_cart');
@@ -105,26 +107,41 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#FDE01A] text-[#1A1A1A] flex flex-col font-sans selection:bg-[#1A1A1A] selection:text-[#FDE01A]">
+      {/* Animación inicial de entrada del logo */}
+      <IntroAnimation onComplete={() => setIntroFinished(true)} />
+
       {/* 1. MENÚ DE NAVEGACIÓN (Fondo plano amarillo, sin línea divisoria) */}
       <Navbar
         cartCount={totalCartCount}
         onOpenCart={() => setCartOpen(true)}
+        logoVisible={introFinished}
       />
 
-      <main className="flex-grow">
-        {/* 2. PRIMERA SECCIÓN: GALERÍA ANIMADA CON IMAGEN GRANDE (Sin título de sección) */}
-        <Gallery />
+      {/* Contenido principal con revelación rápida y fluida al concluir la animación */}
+      <motion.div
+        className="flex-grow flex flex-col will-change-transform"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{
+          opacity: introFinished ? 1 : 0,
+          y: introFinished ? 0 : 8,
+        }}
+        transition={{
+          duration: 0.45,
+          ease: [0.25, 1, 0.5, 1], // Curva Bezier ágil y orgánica
+        }}
+      >
+        <main className="flex-grow">
+          {/* 2. PRIMERA SECCIÓN: GALERÍA ANIMADA CON IMAGEN GRANDE (Sin título de sección) */}
+          <Gallery />
 
-        {/* 3. SEGUNDA SECCIÓN: PRODUCTOS DESTACADOS (Sin título de sección, 4 productos en una sola fila en ordenador) */}
-        <FeaturedProducts
-          products={FEATURED_PRODUCTS}
-          onAddToCart={handleQuickAdd}
-          onViewProduct={(product) => setSelectedProduct(product)}
-        />
-      </main>
-
-      {/* 4. PIE DE PÁGINA */}
-      <Footer />
+          {/* 3. SEGUNDA SECCIÓN: PRODUCTOS DESTACADOS (Sin título de sección, 4 productos en una sola fila en ordenador) */}
+          <FeaturedProducts
+            products={FEATURED_PRODUCTS}
+            onAddToCart={handleQuickAdd}
+            onViewProduct={(product) => setSelectedProduct(product)}
+          />
+        </main>
+      </motion.div>
 
       {/* Slide-over Carrito de compras */}
       <CartDrawer

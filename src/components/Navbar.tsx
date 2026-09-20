@@ -4,9 +4,10 @@ import { ShoppingBag, Menu, X } from 'lucide-react';
 interface NavbarProps {
   cartCount: number;
   onOpenCart: () => void;
+  logoVisible?: boolean;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ cartCount, onOpenCart }) => {
+export const Navbar: React.FC<NavbarProps> = ({ cartCount, onOpenCart, logoVisible = true }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -25,24 +26,26 @@ export const Navbar: React.FC<NavbarProps> = ({ cartCount, onOpenCart }) => {
 
   return (
     <header className="sticky top-0 z-40 bg-[#FDE01A] transition-colors">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-18 sm:h-20 flex items-center justify-between">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-24 sm:h-28 flex items-center justify-between">
         {/* Left: Logo / Brand */}
-        <div className="flex items-center">
+        <div id="navbar-logo-container" className="flex items-center">
           <a
             id="brand-logo"
             href="#inicio"
             onClick={(e) => handleLinkClick(e, '#inicio')}
-            className="group flex items-center gap-2"
+            className={`group flex items-center gap-2.5 ${logoVisible ? 'opacity-100' : 'opacity-0'}`}
           >
-            <span className="font-display text-xl sm:text-2xl font-extrabold tracking-[0.2em] text-[#1A1A1A] uppercase">
-              ATELIER
-            </span>
-            <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-[#1A1A1A]"></span>
+            <img
+              id="navbar-logo-img"
+              src="/logo.png"
+              alt="Logo"
+              className="h-[65px] sm:h-[84px] w-auto max-w-[250px] sm:max-w-[340px] object-contain transition-transform duration-200 group-hover:scale-105"
+            />
           </a>
         </div>
 
         {/* Center: Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center space-x-10">
+        <nav className={`hidden md:flex items-center space-x-10 transition-opacity duration-300 ease-out ${logoVisible ? 'opacity-100' : 'opacity-0'}`}>
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -57,7 +60,7 @@ export const Navbar: React.FC<NavbarProps> = ({ cartCount, onOpenCart }) => {
         </nav>
 
         {/* Right: Cart and Mobile Toggle */}
-        <div className="flex items-center gap-4">
+        <div className={`flex items-center gap-4 transition-opacity duration-300 ease-out ${logoVisible ? 'opacity-100' : 'opacity-0'}`}>
           <button
             id="cart-button"
             type="button"

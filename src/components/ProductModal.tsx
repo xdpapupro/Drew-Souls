@@ -55,9 +55,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({
           <X className="w-5 h-5" />
         </button>
 
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          {/* Left: Product Image */}
-          <div className="relative aspect-[3/4] md:aspect-auto md:h-full bg-[#F2EFE9] overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-stretch">
+          {/* Left: Product Image - Cuadrada (1:1) */}
+          <div className="relative aspect-square w-full bg-[#F2EFE9] overflow-hidden flex items-center justify-center">
             <img
               src={product.image}
               alt={product.name}

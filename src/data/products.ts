@@ -55,7 +55,7 @@ export const FEATURED_PRODUCTS: Product[] = [
       { name: 'Negro Carbón', hex: '#1C1C1C' },
       { name: 'Gris Cemento', hex: '#9E9E9C' }
     ],
-    image: 'https://images.unsplash.com/photo-1539533018447-63fcce667883?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=800&auto=format&fit=crop',
     secondaryImage: 'https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=800&auto=format&fit=crop',
     tag: 'Esencial'
   },

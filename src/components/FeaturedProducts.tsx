@@ -29,7 +29,7 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
             <article
               key={product.id}
               id={`product-card-${product.id}`}
-              className="group relative aspect-[3/4] w-full rounded-none overflow-hidden bg-[#1A1A1A]/10 border border-[#1A1A1A]/20 transition-all duration-300 hover:shadow-xl hover:shadow-black/10 cursor-pointer select-none"
+              className="group relative aspect-square w-full rounded-none overflow-hidden bg-[#1A1A1A]/10 border border-[#1A1A1A]/20 transition-all duration-300 hover:shadow-xl hover:shadow-black/10 cursor-pointer select-none"
               onClick={() => onViewProduct(product)}
             >
               {/* Product Image */}
